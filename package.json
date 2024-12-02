@@ -1,0 +1,16 @@
+{
+	"scripts": {
+		"build": "tsc && vite build",
+		"start": "vite --host"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"goober": "^2.1.16",
+		"htm": "^3.1.1",
+		"loglore": "^1.1.0",
+		"react": "^18.3.1",
+		"rxjs": "^7.8.1",
+		"typescript": "^5.7.2",
+		"vite": "^6.0.2"
+	}
+}

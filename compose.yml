@@ -1,0 +1,5 @@
+services:
+  diary:
+    build: .
+    ports:
+      - "33052:5173"
