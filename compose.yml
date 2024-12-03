@@ -2,4 +2,4 @@ services:
   diary:
     build: .
     ports:
-      - "33052:5173"
+      - "33052:33052"
