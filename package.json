@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"build": "tsc && biome ci && vite build",
+		"build": "tsc && biome ci && vite build --base ./",
 		"start": "vite --host --port 33052"
 	},
 	"devDependencies": {
