@@ -1,5 +1,10 @@
 import { findByDisplayValue, findByRole } from "@testing-library/dom";
 import { expect, test } from "vitest";
+import { asWriterGoToNextPage } from "./automations/as-writer-go-to-next-page";
+import { asWriterGoToPreviousPage } from "./automations/as-writer-go-to-previous-page";
+import { asWriterWriteOnLeftPage } from "./automations/as-writer-write-on-left-page";
+import { asWriterWriteOnRightPage } from "./automations/as-writer-write-on-right-page";
+import { withFirstTimeOpeningApp } from "./fixtures/with-first-time-opening-app";
 import { withLeftPageWrittenForFirstTime } from "./fixtures/with-left-page-written-for-first-time";
 import { withSecondTimeOpeningAppWithEntry } from "./fixtures/with-second-time-opening-app-with-one-entry";
 
@@ -20,4 +25,24 @@ test("when writing for first time on left page, right page should be empty", asy
 	}
 
 	expect(rightPage.value).toBe("");
+});
+
+test("write the first entry on the first four pages", async () => {
+	const dataPage1 = Math.random().toString();
+	const dataPage2 = Math.random().toString();
+	const dataPage3 = Math.random().toString();
+	const dataPage4 = Math.random().toString();
+	const testContext = await withFirstTimeOpeningApp();
+	const body = testContext.window.document.body;
+	await asWriterWriteOnLeftPage(testContext, dataPage1);
+	await asWriterWriteOnRightPage(testContext, dataPage2);
+	await asWriterGoToNextPage(testContext);
+	await asWriterWriteOnLeftPage(testContext, dataPage3);
+	await asWriterWriteOnRightPage(testContext, dataPage4);
+	await asWriterGoToPreviousPage(testContext);
+	await findByDisplayValue(body, dataPage1);
+	await findByDisplayValue(body, dataPage2);
+	await asWriterGoToNextPage(testContext);
+	await findByDisplayValue(body, dataPage3);
+	await findByDisplayValue(body, dataPage4);
 });
