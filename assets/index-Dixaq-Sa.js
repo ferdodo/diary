@@ -58,7 +58,7 @@ Error generating stack: `+o.message+`
 					onChange=${h=>a(d({rightSide:!0,content:h.target.value}))} />
 			</section>
 		</div>
-	`}function Ph(){const i=new Date,s=i.getDate(),a=i.getMonth();return`${i.getFullYear()}/${a}/${s}`}function Nh(i){const s=i.localStorage.getItem("entries");return s?JSON.parse(s):[]}function zh(i,s){i.localStorage.setItem("entries",JSON.stringify(s))}function Th(i,s=Ph()){const a=i.document.createElement("div");a.className="app",i.document.body.appendChild(a);const c=sp.createRoot(a),d=Nh(i),h=Ch(),w=mu(),{initEntries:k,turnNextPage:_,turnPreviousPage:z}=w.actions;h.dispatch(k({entries:d,today:s})),h.subscribe(()=>{zh(i,h.getState().entries)}),document.addEventListener("wheel",N=>{N.deltaY<0?h.dispatch(_()):h.dispatch(z())}),c.render(Uc`
+	`}function Ph(){const i=new Date,s=i.getDate(),a=i.getMonth();return`${i.getFullYear()}/${a}/${s}`}function Nh(i){const s=i.localStorage.getItem("entries");return s?JSON.parse(s):[]}function zh(i,s){i.localStorage.setItem("entries",JSON.stringify(s))}function Th(i,s=Ph()){const a=i.document.createElement("div");a.className="app",i.document.body.appendChild(a);const c=sp.createRoot(a),d=Nh(i),h=Ch(),w=mu(),{initEntries:k,turnNextPage:_,turnPreviousPage:z}=w.actions;h.dispatch(k({entries:d,today:s})),h.subscribe(()=>{zh(i,h.getState().entries)}),i.addEventListener("wheel",N=>{N.deltaY<0?h.dispatch(_()):h.dispatch(z())}),c.render(Uc`
         <${Cc} store=${h}>
             <${xh} />
         </${Cc}>
