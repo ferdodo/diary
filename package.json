@@ -1,18 +1,23 @@
 {
 	"scripts": {
-		"build": "tsc && biome ci && vite build --base ./",
+		"build": "tsc && vitest run && biome ci && vite build --base ./",
 		"start": "vite --host --port 33052"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
 		"@reduxjs/toolkit": "^2.4.0",
+		"@stryker-mutator/core": "^8.6.0",
+		"@stryker-mutator/vitest-runner": "^8.6.0",
+		"@testing-library/dom": "^10.4.0",
 		"@types/react": "^18.3.12",
 		"@types/react-dom": "^18.3.1",
+		"happy-dom": "^15.11.7",
 		"htm": "^3.1.1",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"react-redux": "^9.1.2",
 		"typescript": "^5.7.2",
-		"vite": "^6.0.2"
+		"vite": "^6.0.2",
+		"vitest": "^2.1.8"
 	}
 }

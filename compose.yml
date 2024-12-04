@@ -3,3 +3,10 @@ services:
     build: .
     ports:
       - "33052:33052"
+
+  coverage:
+    build:
+      context: .
+      dockerfile: coverage.Dockerfile
+    depends_on:
+      - diary

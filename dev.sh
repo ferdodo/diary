@@ -31,7 +31,7 @@ function setup_pre_commit_hook {
 set -e
 setup_pre_commit_hook
 docker compose down -t 1
-docker compose up -d --build
+docker compose up -d --build diary
 echo "╭───────────────────────────────╮"
 echo "│ Diary: http://localhost:33052 │"
 echo "╰───────────────────────────────╯"

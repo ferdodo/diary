@@ -1,5 +1,5 @@
 import type { Entry } from "../types/entry";
 
-export function saveAllEntries(entries: Entry[]) {
-	localStorage.setItem("entries", JSON.stringify(entries));
+export function saveAllEntries(window: Window, entries: Entry[]) {
+	window.localStorage.setItem("entries", JSON.stringify(entries));
 }
