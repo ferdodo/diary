@@ -12,7 +12,7 @@ export function Diary() {
 	return html`
 		<div className="book">
 			<section className="page left-page">
-				<h6>${leftPage?.day}</h6>
+				<h6 role="left-page-date">${leftPage?.day}</h6>
 				<textarea
 					role="left-page"
 					value=${leftPage?.content}
@@ -21,7 +21,7 @@ export function Diary() {
 			</section>
 
 			<section className="page right-page">
-				<h6>${rightPage?.day}</h6>
+				<h6 role="right-page-date">${rightPage?.day}</h6>
 				<textarea
 					role="right-page"
 					value=${rightPage?.content}

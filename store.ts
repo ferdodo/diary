@@ -24,14 +24,16 @@ export function createCurrentSpreadSelector() {
 	});
 }
 
+const initialState: DiaryState = {
+	spreadIndex: 0,
+	entries: [],
+	today: "1970/01/01",
+};
+
 export function createEntriesSlice() {
 	return createSlice({
 		name: "entriesSlice",
-		initialState: <DiaryState>{
-			spreadIndex: 0,
-			entries: [],
-			today: "1970/01/01",
-		},
+		initialState,
 		reducers: {
 			initEntries(
 				_state,
@@ -43,7 +45,7 @@ export function createEntriesSlice() {
 				const lastEntry = entries[entries.length - 1];
 
 				if (lastEntry?.day !== today) {
-					entries.push({ day: today, contents: [""] });
+					entries.push({ day: today, contents: [] });
 				}
 
 				return { entries, spreadIndex, today };
@@ -77,11 +79,7 @@ export function createEntriesSlice() {
 					entries,
 				);
 
-				if (entries[entryIndex]?.day === today) {
-					if (!entries[entryIndex]) {
-						entries[entryIndex] = { day: "", contents: [] };
-					}
-
+				if (entries[entryIndex].day === today) {
 					entries[entryIndex].contents[contentIndex] = content;
 				}
 			},

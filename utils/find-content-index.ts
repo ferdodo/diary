@@ -55,9 +55,5 @@ export function findContentIndex(
 		}
 	}
 
-	if (entryIndex === undefined) {
-		entryIndex = entries.length;
-	}
-
 	return [entryIndex, contentIndex];
 }
