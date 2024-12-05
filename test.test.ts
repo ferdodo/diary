@@ -46,3 +46,14 @@ test("write the first entry on the first four pages", async () => {
 	await findByDisplayValue(body, dataPage3);
 	await findByDisplayValue(body, dataPage4);
 });
+
+test("only one next page should becoming editable when editing the current content", async () => {
+	const dataPage1 = Math.random().toString();
+	const dataPage2 = Math.random().toString();
+	const testContext = await withFirstTimeOpeningApp();
+	const body = testContext.window.document.body;
+	await asWriterWriteOnLeftPage(testContext, dataPage1);
+	await asWriterWriteOnLeftPage(testContext, dataPage2);
+	await asWriterGoToNextPage(testContext);
+	await findByDisplayValue(body, dataPage2);
+});

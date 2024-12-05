@@ -18,9 +18,10 @@ export function findContentIndex(
 	let entryIndex = 0;
 	let contentIndex = 0;
 	let currentIndex = 0;
-	const entryIndexByContent = entries.flatMap((entry, entryI) =>
-		entry.contents.map(() => entryI),
-	);
+
+	const entryIndexByContent = entries
+		.flatMap((entry, entryI) => entry.contents.map(() => entryI))
+		.concat(entries.length - 1);
 
 	const spreadedContent = arrayChunk(entryIndexByContent, 2);
 

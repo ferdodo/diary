@@ -14,7 +14,13 @@ export function createCurrentSpreadSelector() {
 	return createSelector([(state: DiaryState) => state], (state: DiaryState) => {
 		const spreads = entriesToSpreads(state.entries);
 		const spread = spreads[state.spreadIndex];
-		return spread;
+
+		return (
+			spread || [
+				{ day: "", content: "" },
+				{ day: "", content: "" },
+			]
+		);
 	});
 }
 
@@ -34,7 +40,6 @@ export function createEntriesSlice() {
 				const { entries, today } = action.payload;
 				const spreads = entriesToSpreads(entries);
 				const spreadIndex = Math.max(0, spreads.length - 1);
-
 				const lastEntry = entries[entries.length - 1];
 
 				if (lastEntry?.day !== today) {
@@ -45,8 +50,12 @@ export function createEntriesSlice() {
 			},
 			turnNextPage(state, _action: PayloadAction<void>) {
 				const spreads = entriesToSpreads(state.entries);
+				const lastRightPageEmpty = !spreads[spreads.length - 1][1].content;
 
-				if (state.spreadIndex < spreads.length - 1) {
+				if (
+					state.spreadIndex <
+					(lastRightPageEmpty ? spreads.length - 1 : spreads.length)
+				) {
 					state.spreadIndex++;
 				}
 			},
@@ -71,14 +80,6 @@ export function createEntriesSlice() {
 				if (entries[entryIndex]?.day === today) {
 					if (!entries[entryIndex]) {
 						entries[entryIndex] = { day: "", contents: [] };
-					}
-
-					if (entries[entryIndex].contents[contentIndex] === undefined) {
-						entries[entryIndex].contents[contentIndex] = "";
-					}
-
-					if (contentIndex === entries[entryIndex].contents.length - 1) {
-						entries[entryIndex].contents.push("");
 					}
 
 					entries[entryIndex].contents[contentIndex] = content;
